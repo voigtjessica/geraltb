@@ -1,0 +1,15 @@
+# Lendo várias sheets do Excel de uma vez:
+# Função que eu achei no stackoverflow
+
+library(readxl)    
+read_excel_allsheets <- function(filename, tibble = FALSE) {
+  sheets <- readxl::excel_sheets(filename)
+  x <- lapply(sheets, function(X) readxl::read_excel(filename, sheet = X))
+  names(x) <- sheets
+  x
+}
+
+# Exemplo:
+# setwd("C:\\Users\\jvoig\\Desktop")
+# tabela_exemplo <- read_excel_allsheets("test.xlsx")
+#importou como uma lista de 3 elementos (São três sheets)
