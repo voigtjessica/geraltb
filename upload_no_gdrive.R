@@ -36,3 +36,11 @@ teste_gdrive_df_sheet <- drive_upload(
 
 #path é o caminho onde o arquivo será guardado, o ~ é o "meu drive" e dai você especifica o 
 #caminho ;)
+
+
+#Obs: alternativa para salvar como Excel (as vezes é melhor)
+library(xlsx)
+
+write.xlsx(as.data.frame(objeto), 
+           file="objeto.xlsx", sheetName="objeto",
+           col.names=TRUE, row.names=FALSE, append=FALSE, showNA=FALSE)
