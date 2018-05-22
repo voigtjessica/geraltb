@@ -1,0 +1,68 @@
+# Exemplo de automatização de criação de planilhas , atribuição, expostação e upload no Gdrive.
+
+# Governos Estaduais:
+
+library(purrr)
+library(xlsx)
+library(googledrive)
+
+#base_gov_estaduais
+load("base_gov_estaduais.Rdata")
+
+amostra_test <- list(1, 2, 3 ,4,5)
+
+#Função:
+gerar_planilha_1 <- function(base, amostra) {
+  stopifnot(require(purrr))
+  
+  minha_amostra <- base %>%
+    split(.$orgao) %>%
+    map2(amostra, sample_n)
+  
+  reultado <- bind_rows(minha_amostra)
+  
+}
+
+teste_amostra <- gerar_planilha_1(base_gov_estaduais, amostra_test)
+
+amostra <- list(525, 525, 525 , 525, 47) #Todas + Hugo
+banco_estagiarios <- gerar_planilha_1(base_gov_estaduais, amostra)
+
+assignment1 <- c(rep("Ana", 125), rep("José", 125), rep("Lizandra", 125), rep("Lucas", 125), rep("Hugo", 25))
+assignment2 <- c(rep("Ana", 10), rep("José", 10), rep("Lizandra", 10), rep("Lucas", 10), rep("Hugo", 7))
+
+aux <- banco_estagiarios %>% 
+  filter(orgao!="governo estadual do rio grande do sul") %>%
+  group_by(orgao) %>% 
+  mutate(responsavel = assignment1)
+  
+aux2 <- banco_estagiarios %>% 
+  filter(orgao == "governo estadual do rio grande do sul") %>%
+  group_by(orgao) %>% 
+  mutate(responsavel = assignment2)
+
+banco_estagiarios_final <- aux %>%
+  bind_rows(aux2) %>%
+  split(.$responsavel)
+
+
+setwd("C:\\Users\\jvoig\\OneDrive\\Documentos\\colab_tb")
+respon <- c("Ana", "Jose", "Lizandra", "Lucas", "Hugo")
+
+# Salvando como Excel:
+for (i in seq_along(respon)) { 
+  write.xlsx(as.data.frame(banco_estagiarios_final[[i]]),
+          file = paste0(respon[i], "_base_executivo_estadual.xlsx"), 
+           sheetName=paste0(respon[i], "_base_executivo_estadual"),
+            col.names=TRUE, row.names=FALSE, append=FALSE, showNA=FALSE)
+} 
+
+# Mandando pro drive:
+for (i in seq_along(respon)){
+  teste_gdrive_df_sheet <- drive_upload(paste0(respon[i], "_base_executivo_estadual.xlsx"),
+    path="~/TB/achados e pedidos/Bases_classificação/COLAB",
+    name = paste0(respon[i], "_base_executivo_estadual"),
+    type = "spreadsheet")
+}
+
+# M-A-R-A-V-I-L-H-O-S-O <3 
