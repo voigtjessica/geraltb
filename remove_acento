@@ -1,0 +1,24 @@
+# Função remove acento
+
+library(dplyr)
+
+remove_acento <- function(vec, Toupper=F) {
+  vec <- tolower(vec)
+  vec <- gsub('?', 'a', vec)
+  vec <- gsub('?', 'a', vec)
+  vec <- gsub('?', 'a', vec)
+  vec <- gsub('?', 'a', vec)
+  vec <- gsub('?', 'e', vec)
+  vec <- gsub('?', 'e', vec)
+  vec <- gsub('?', 'i', vec)
+  vec <- gsub('?', 'o', vec)
+  vec <- gsub('?', 'o', vec)
+  vec <- gsub('?', 'o', vec)
+  vec <- gsub('?', 'u', vec)
+  vec <- gsub('?', 'c', vec)
+  vec <- gsub("'", '', vec)
+  vec <- gsub("`", '', vec)
+  #  vec <- gsub('\'', '', vec)
+  if ( Toupper==T) vec <- toupper(vec)
+  return(vec)
+}
