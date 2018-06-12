@@ -48,8 +48,6 @@ write.xlsx(as.data.frame(objeto),
 ## Download no Drive
 library(googlesheets)
 
-url_contatos <- "https://docs.google.com/spreadsheets/d/1cxk1KUvncZ8SiavMmGkP4lYXjQ-7KD4corBjqkMjOxA/edit?usp=sharing"
-
 #Autenticação:
 gs_ls() 
 
