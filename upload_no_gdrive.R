@@ -55,6 +55,5 @@ gs_ls()
 contatos_sheet <- gs_title("TDP_Contatos_produção_nova")
 
 #Atribuindo o df a um objeto:
-contatos_tdp <- contatos_sheet %>%
-  gs_read()
+contatos_tdp <- gs_read(contatos_sheet)
 
