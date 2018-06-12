@@ -44,3 +44,19 @@ library(xlsx)
 write.xlsx(as.data.frame(objeto), 
            file="objeto.xlsx", sheetName="objeto",
            col.names=TRUE, row.names=FALSE, append=FALSE, showNA=FALSE)
+
+## Download no Drive
+library(googlesheets)
+
+url_contatos <- "https://docs.google.com/spreadsheets/d/1cxk1KUvncZ8SiavMmGkP4lYXjQ-7KD4corBjqkMjOxA/edit?usp=sharing"
+
+#Autenticação:
+gs_ls() 
+
+#Importando:
+contatos_sheet <- gs_title("TDP_Contatos_produção_nova")
+
+#Atribuindo o df a um objeto:
+contatos_tdp <- contatos_sheet %>%
+  gs_read()
+
