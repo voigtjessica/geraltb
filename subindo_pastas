@@ -1,0 +1,33 @@
+# objetivo desse script é copiar o conteúdo de dentro de pastas dos ministérios que estão salvas em um diretório "fonte" e 
+# salvar em um outro lugar sem a pasta dos ministérios. Esse é o script base que eu criei para o loop:
+
+#pasta ministérios:
+
+pasta_fonte <- "C:/Users/jvoig/Desktop/simulacao"
+ministerios <- list.files(pasta_fonte) # n=3
+
+#olhe dentro da pasta ministerios e me traga o que há dentro de cada um dele: 
+
+i=1
+ for(i in 1:3){ 
+  print(i)
+  pasta_ministerios <- paste(pasta_fonte, ministerios[i], sep="/")
+  pasta_protocolos <- list.files(pasta_ministerios)
+  
+  for(p in seq_along(pasta_protocolos)) { 
+    
+    pasta_a_copiar <- paste(pasta_ministerios, pasta_protocolos[p], sep="/" )
+
+    pasta_destino <- paste("C:/Users/jvoig/Desktop/destino", pasta_protocolos[p], sep="/")
+    #cria o diretório se ele não existe:
+    
+    ifelse(!dir.exists(pasta_destino), 
+         dir.create(pasta_destino, recursive=TRUE), FALSE)
+    
+    # Copia o que está dentro da pasta do protocolo e cola na pasta destino:
+    arquivos <- list.files(pasta_a_copiar)
+    
+    file.copy(file.path(pasta_a_copiar,arquivos)
+            , pasta_destino, overwrite = F)
+    
+  }}
