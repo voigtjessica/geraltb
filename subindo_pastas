@@ -4,12 +4,12 @@
 #pasta ministérios:
 
 pasta_fonte <- "C:/Users/jvoig/Desktop/simulacao"
-ministerios <- list.files(pasta_fonte) # n=3
+ministerios <- list.files(pasta_fonte) 
 
 #olhe dentro da pasta ministerios e me traga o que há dentro de cada um dele: 
 
 i=1
- for(i in 1:3){ 
+ for(i in seq_along(ministerios){ 
   print(i)
   pasta_ministerios <- paste(pasta_fonte, ministerios[i], sep="/")
   pasta_protocolos <- list.files(pasta_ministerios)
