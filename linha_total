@@ -1,0 +1,9 @@
+#adicionar linha de totais ao fim de uma tabela:
+
+library(dplyr)
+(library(janitor)
+
+x %>%
+group_by(y) %>%
+summarise(media = mean(z)) %>%
+janitor::adorn_totals("row")
