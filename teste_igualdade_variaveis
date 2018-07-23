@@ -20,12 +20,17 @@ teste_igualdade_nomes_var_df <- function(base1, base2) {
   resp_x <- paste(x[!as.logical(teste_nome_igual_x)], collapse = ", ")
   resp_y <- paste(y[!as.logical(teste_nome_igual_y)], collapse = ", ")
   
-  print(paste("as variáveis em x que não estão em y, são:", resp_x,
-              ". E as variáveris de y que não estão em x, são:", resp_y,
+  cat(paste("Colunas de", deparse(substitute(base1)), "ausentes em" , 
+              deparse(substitute(base2)), ":", resp_x,
+              ".\n\nColunas de", deparse(substitute(base2)), "ausentes em" ,
+              deparse(substitute(base1)), ":", resp_y,
               sep=" "))
   
 }
 
 ## Exemplo:
-# teste_igualdade_nomes_var_df(base_cgm_sp_final, base_prefeituras)
-# [1] "as variáveis em x que não estão em y, são: "id" . E as variáveris de y que não estão em x, são: "
+# teste_igualdade_nomes_var_df(ind, jud3)
+#
+#Colunas de ind ausentes em jud3 : atendimento, situacao, UF, municipio, esfera .
+#
+#Colunas de jud3 ausentes em ind : status, situação, uf, município, nivel
