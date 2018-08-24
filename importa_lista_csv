@@ -1,0 +1,25 @@
+importa_lista_csv <- function(padrao_import = "csv",
+                              padrao_filtro = "ZZ",
+                              colClasses_tipo = NULL,
+                              pasta = getwd()) {
+  setwd(pasta)
+  # precisa já está na pasta correta
+  
+  # carrega biblios necessárias
+  stopifnot(require(dplyr))
+  stopifnot(require(purrr))
+  stopifnot(require(data.table))
+  
+  # lista arquivos a importar
+  arq <- list.files(pattern = padrao_import)
+  arq <- arq[!grepl(padrao_filtro, arq)]
+  
+  # importa arquivos
+  df <- arq %>%
+    purrr::map(function(x) {
+      data.table::fread(x, colClasses = colClasses_tipo)
+    }) %>%
+    purrr::reduce(rbind)
+}
+
+## df <- importa_lista_csv(colClasses_tipo = "character")
