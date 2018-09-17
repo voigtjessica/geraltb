@@ -1,0 +1,11 @@
+
+vec1 <- c("a", "b", "c")
+vec2 <-c("b", "c", "a")
+
+#ordem alfabética, usando unique pra casos de duplicatas e quando tu só quer ver se tem os mesmos casos em um ou outro, independente da frequência:
+
+vec1 <- sort(unique(vec1))
+vec2  <- sort(unique(vec2))
+
+#teste:
+all.equal(vec1, vec2)
