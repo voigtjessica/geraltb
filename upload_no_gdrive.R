@@ -11,7 +11,7 @@ View(teste_gdrive_df)
 
 #autenticação no google drive:
 
-drive_find(n_max=10)  
+drive_find(n_max=10)  #aqui tu deve responder 2 para abrir o browse e tu logar no gdrive
 
 
 #Salve a planilha em csv:
