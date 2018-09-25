@@ -22,7 +22,7 @@ setwd("C:\\Users\\jvoig\\OneDrive\\Documentos\\Colab\\COLAB\\templates")
 #Salvar com os seguintes parâmetros para que não dê erro para a exportação para spreadsheet:
 
 write.table(teste_gdrive_df , file="teste_gdrive_df.csv", 
-            sep=",", row.names=F, na="", quote = T)
+            sep=",", row.names=F, na="", quote = T) #aqui eu salvei com o write.table, mas poderia ser o data.table::fwrite()
 
 
 #agora, ele vai buscar no diretório já setado o arquivo para upload:
