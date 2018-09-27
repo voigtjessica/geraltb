@@ -1,0 +1,5 @@
+#all as character
+
+cgu_original  <- readr::read_csv("C:/Users/cgu", col_types = cols(.default = "c"))
+
+prop1 <- data.table::fread("C:\\myfile.csv", colClasses = 'character', data.table = FALSE)
