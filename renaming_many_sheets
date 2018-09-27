@@ -1,0 +1,26 @@
+#Example that I once did. 
+#I had a list() containing many sheets with diferent headers, I knew the headers pattern, so I did a loop that would rename all the sheets header 
+#so I could put them together in one DF.
+
+#lista_lotes : my list with many sheets.
+#plyr::rename function you must use first the old name and then the new name.
+
+library(dplyr)
+library(plyr)
+
+lista_result <- list()
+for (i in seq_along(lista_lotes)){
+  print(i)
+  x <- lista_lotes[[i]]
+  x <- plyr::rename(x, replace = c("nome_completo" = "figure_name",
+                                   "title" = "office_title",
+                                   "numero" = "figure_id",
+                                   "url1" = "url",
+                                   "State" = "district_id",
+                                   "Federal District"  = "district_id"), TRUE)
+  x <- x %>%
+    mutate_all(as.character) %>%
+     select(figure_name, office_title,district_id, figure_id, url, nome_arq )
+  
+  lista_result[[i]] <- x
+}
