@@ -27,7 +27,7 @@ write.table(teste_gdrive_df , file="teste_gdrive_df.csv",
 
 #agora, ele vai buscar no diretório já setado o arquivo para upload:
 
-teste_gdrive_df_sheet <- drive_upload(
+drive_upload(
   "teste_gdrive_df.csv",
   path="~/TB/2018/",
   name = "teste2",
