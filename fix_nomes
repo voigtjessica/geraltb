@@ -1,0 +1,15 @@
+fix_nomes <- function(x){
+  
+  x <- ifelse(grepl("De", x), gsub( "\\ De", " de", x ), x)
+  x <- ifelse(grepl("Da", x), gsub( "\\ Da", " da", x ), x)
+  x <- ifelse(grepl("Do", x), gsub( "\\ Do", " do", x ), x)
+  x <- ifelse(grepl("Dos", x), gsub( "\\ Dos", " dos", x ), x)
+  
+}
+
+x <- c("Julío De Castillos", "Andrea Da Silva", "Armando Dos Santos")
+
+x <- fix_nomes(x)
+x
+
+# [1] "Julío de Castillos" "Andrea da Silva"    "Armando dos Santos"
