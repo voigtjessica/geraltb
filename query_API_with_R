@@ -1,0 +1,36 @@
+#Querying API in R
+#Tutorial: https://medium.com/@traffordDataLab/querying-apis-in-r-39029b73d5f1
+
+library(tidyverse)
+library(httr) 
+library(jsonlite)
+
+#API documentation from the UK police: https://data.police.uk/docs/
+
+#Endpoint + path para roubo a casa:  https://data.police.uk/api/crimes-street/burglary?
+
+path <- "https://data.police.uk/api/crimes-street/burglary?"
+
+# Build our API request and submit it
+# First we supply the path to the API endpoint and provide search parameters in the form of a list to the query argument. 
+# There are three parameters available to us:
+
+request <- GET(url = path, 
+               query = list(
+                 lat = 53.421813,
+                 lng = -2.330251,
+                 date = "2018-05"))
+
+#If it was right, the result will be == 200
+
+request$status_code
+
+
+# Next we parse the content returned from the server as text using the content function.
+
+response <- content(request, as = "text", encoding = "UTF-8")
+
+# Then we’ll parse the JSON content and and convert it to a data frame.
+
+df <- fromJSON(response, flatten = TRUE) %>% 
+  data.frame()
