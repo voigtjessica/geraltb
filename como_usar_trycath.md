@@ -71,7 +71,10 @@ for(i in 1:length(teste)){
     print(e)
   })
   
-  x <- rbind(x, a)}
+  x <- rbind(x, a)
+  }
+  
+x
 ```
 
 O *tryCath* tem que estar dentro da operação que pode dar erro. Se o meu loop tem mais de uma operação, isso significa que as outras operações têm que continuar fora do trycath.
